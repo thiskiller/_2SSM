@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atxiaoniu.dao.ManagerDao">
+    <!--public List<Book> getAll();-->
+    <select id="getAll" resultType="com.atxiaoniu.bean.Book">
+        SELECT id,name,author,price,sales,stock,img_path from book
+    </select>
+    <select id="getOneById" resultType="com.atxiaoniu.bean.Book">
+        SELECT id,name,author,price,sales,stock,img_path from book where id = #{id}
+    </select>
+    <!--public boolean saveBook(Book book);-->
+    <update id="saveBook">
+        UPDATE book SET name=#{name},price=#{price},author=#{author},sales=#{sales},stock=#{stock} where id = #{id}
+    </update>
+    <!--public boolean insertBook(Book book);-->
+    <insert id="insertBook">
+        INSERT into book(name,price,author,sales,stock,img_path)  VALUES(#{name},#{price},#{author},#{sales},#{stock},#{imgPath})
+    </insert>
+    <!--public boolean deleteBook(Integer id);-->
+    <insert id="deleteBook">
+        DELETE FROM book where id = #{id}
+    </insert>
+    <!--public List<Order> getAllOrders();-->
+    <select id="getAllOrders" resultType="com.atxiaoniu.bean.Order">
+        SELECT id,user_name,check_code,status,money,date  FROM checkout
+    </select>
+    <!--public boolean changeCode(int id);-->
+    <update id="changeCode">
+        UPDATE checkout SET status=1 WHERE id = #{id};
+    </update>
+    <!--public List<Order> selectOrders(String username);-->
+    <select id="selectOrders" resultType="com.atxiaoniu.bean.Order">
+        SELECT id,user_name,check_code,status,money,date  FROM checkout WHERE user_name=#{username}
+    </select>
+</mapper>

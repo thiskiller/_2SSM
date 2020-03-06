@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       <!--Spring只扫描控制器;禁用默认规则-->
+       <context:component-scan base-package="com.atxiaoniu" use-default-filters="false">
+           <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
+       </context:component-scan>
+        <!--扫静态资源-->
+        <mvc:default-servlet-handler></mvc:default-servlet-handler>
+        <!--扫动态资源-->
+        <mvc:annotation-driven></mvc:annotation-driven>
+        <!--配视图解析器，前后缀拼串-->
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <property name="prefix" value="/pages/"></property>
+            <property name="suffix" value=".jsp"></property>
+        </bean>
+    <!--配置拦截器-->
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/managers/*"/>
+                <bean class="com.atxiaoniu.interceptor.ManagerInterceptor"></bean>
+            </mvc:interceptor>
+        </mvc:interceptors>
+</beans>

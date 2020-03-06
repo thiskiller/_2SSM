@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atxiaoniu.dao.RegistDao">
+
+    <!--public boolean selectByName(String username);-->
+    <select id="selectByName" resultType="boolean">
+        SELECT count(id) from USER where username = #{username}
+    </select>
+    <!--public boolean RegistByUser(User user);-->
+    <insert id="RegistByUser">
+        INSERT INTO USER(username,password,email) VALUES (#{username},#{password},#{email})
+    </insert>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--public boolean isExist(String username);-->
+        <!--public boolean selectByUsernameAndPassword(User user);-->
+<mapper namespace="com.atxiaoniu.dao.LoginDao">
+    <select id="isExist" resultType="boolean">
+        SELECT count(id) from user where username=#{username}
+    </select>
+    <select id="selectByUsernameAndPassword" resultType="boolean">
+        SELECT COUNT(id) from user where username=#{username} and password=#{password}
+    </select>
+</mapper>
